@@ -126,6 +126,21 @@
             },
           },
           {
+            opcode: "addSound",
+            blockType: Scratch.BlockType.COMMAND,
+            text: Scratch.translate("add [SPEECH] as sound named [NAME]"),
+            arguments: {
+              SPEECH: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "Hello, my name is SAM.",
+              },
+              NAME: {
+                type: Scratch.ArgumentType.STRING,
+                defaultValue: "sound1",
+              },
+            },
+          },
+          {
             opcode: "setProp",
             blockType: Scratch.BlockType.COMMAND,
             text: Scratch.translate("set [PROP] amount to [NUM]"),
@@ -215,6 +230,40 @@
       /* eslint-disable */
       new SamJs(util.target.extensionStorage.samtts).download(args.SPEECH);
       /* eslint-enable */
+    }
+    /**
+     * Shamelessly copied from Lily/Assets.js addSound()
+     */
+    async addSound(args, util) {
+      const targetId = util.target.id;
+      const assetName = Scratch.Cast.toString(args.NAME);
+
+      this.checkProps(util);
+      const buffer = new SamJs(util.target.extensionStorage.samtts).wav(
+        args.SPEECH
+      );
+
+      const storage = Scratch.vm.runtime.storage;
+      const asset = storage.createAsset(
+        storage.AssetType.Sound,
+        storage.DataFormat.WAV,
+        buffer,
+        null,
+        true
+      );
+
+      try {
+        await Scratch.vm.addSound(
+          {
+            asset,
+            md5: asset.assetId + "." + asset.dataFormat,
+            name: assetName,
+          },
+          targetId
+        );
+      } catch (e) {
+        console.error(e);
+      }
     }
     setProp(args, util) {
       this.checkProps(util);
