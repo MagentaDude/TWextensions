@@ -79,6 +79,227 @@
     presetMenu.push({ text: Scratch.translate(key), value: key });
   });
 
+  // taken from https://github.com/discordier/sam/blob/master/docs/manual.md#phonetic-input-to-sam
+  const phonemeMenu = [
+    {
+      value: "IY",
+      text: Scratch.translate("/i/ IY as in feet"),
+    },
+    {
+      value: "IH",
+      text: Scratch.translate("/ɪ/ IH as in pin"),
+    },
+    {
+      value: "EH",
+      text: Scratch.translate("/ɛ/ EH as in beg"),
+    },
+    {
+      value: "AE",
+      text: Scratch.translate("/æ/ AE as in Sam"),
+    },
+    {
+      value: "AA",
+      text: Scratch.translate("/ɑ/ AA as in pot"),
+    },
+    {
+      value: "AH",
+      text: Scratch.translate("/ᴧ/ AH as in budget"),
+    },
+    {
+      value: "AO",
+      text: Scratch.translate("/ɔː/ AO as in talk"),
+    },
+    {
+      value: "OH",
+      text: Scratch.translate("/oʊ/ OH as in cone"),
+    },
+    {
+      value: "UH",
+      text: Scratch.translate("/ʊ/ UH as in book"),
+    },
+    {
+      value: "UX",
+      text: Scratch.translate("/u/ UX as in loot"),
+    },
+    {
+      value: "ER",
+      text: Scratch.translate("/əː/ ER as in bird"),
+    },
+    {
+      value: "AX",
+      text: Scratch.translate("/æ/ AX as in gallon"),
+    },
+    {
+      value: "IX",
+      text: Scratch.translate("/ɪ/ IX as in digit"),
+    },
+    {
+      value: "EY",
+      text: Scratch.translate("/eɪ/ EY as in made"),
+    },
+    {
+      value: "AY",
+      text: Scratch.translate("/aɪ/ AY as in high"),
+    },
+    {
+      value: "OY",
+      text: Scratch.translate("/ɔɪ/ OY as in boy"),
+    },
+    {
+      value: "AW",
+      text: Scratch.translate("/aʊ/ AW as in how"),
+    },
+    {
+      value: "OW",
+      text: Scratch.translate("/əʊ/ OW as in slow"),
+    },
+    {
+      value: "UW",
+      text: Scratch.translate("/ʉː/ UW as in crew"),
+    },
+    // The following symbols are used internally by some of S.A.M.'s rules, but they are also available to the user.
+    // {
+    //     value: "YX",
+    //     text: Scratch.translate("Y diphthong ending")
+    // },
+    // {
+    //     value: "WX",
+    //     text: Scratch.translate("W diphthong ending")
+    // },
+    // {
+    //     value: "RX",
+    //     text: Scratch.translate("R after a vowel")
+    // },
+    // {
+    //     value: "LX",
+    //     text: Scratch.translate("L after a vowel")
+    // },
+    // {
+    //     value: "/X",
+    //     text: Scratch.translate("/X as in H before a non-front vowel or consonant")
+    // },
+    // {
+    //     value: "DX",
+    //     text: Scratch.translate("DX \"flap\" as in pity")
+    // },
+    {
+      value: "R",
+      text: Scratch.translate("/ɹ/ R as in red"),
+    },
+    {
+      value: "L",
+      text: Scratch.translate("/l/ L as in allow"),
+    },
+    {
+      value: "W",
+      text: Scratch.translate("/w/ W as in away"),
+    },
+    {
+      value: "WH",
+      text: Scratch.translate("/w/ WH as in whale"),
+    },
+    {
+      value: "Y",
+      text: Scratch.translate("/j/ Y as in you"),
+    },
+    {
+      value: "M",
+      text: Scratch.translate("/m/ M as in Sam"),
+    },
+    {
+      value: "N",
+      text: Scratch.translate("/n/ N as in man"),
+    },
+    {
+      value: "NX",
+      text: Scratch.translate("/ŋ/ NX as in song"),
+    },
+    {
+      value: "B",
+      text: Scratch.translate("/b/ B as in bad"),
+    },
+    {
+      value: "D",
+      text: Scratch.translate("/d/ D as in dog"),
+    },
+    {
+      value: "G",
+      text: Scratch.translate("/ɡ/ G as in again"),
+    },
+    {
+      value: "J",
+      text: Scratch.translate("/ʤ/ J as in judge"),
+    },
+    {
+      value: "Z",
+      text: Scratch.translate("/z/ Z as in zoo"),
+    },
+    {
+      value: "ZH",
+      text: Scratch.translate("/ʒ/ ZH as in pleasure"),
+    },
+    {
+      value: "V",
+      text: Scratch.translate("/v/ V as in seven"),
+    },
+    {
+      value: "DH",
+      text: Scratch.translate("/ð/ DH as in then"),
+    },
+    {
+      value: "S",
+      text: Scratch.translate("/s/ S as in Sam"),
+    },
+    {
+      value: "SH",
+      text: Scratch.translate("/ʃ/ SH as in fish"),
+    },
+    {
+      value: "F",
+      text: Scratch.translate("/f/ F as in fish"),
+    },
+    {
+      value: "TH",
+      text: Scratch.translate("/θ/ TH as in thin"),
+    },
+    {
+      value: "P",
+      text: Scratch.translate("/p/ P as in poke"),
+    },
+    {
+      value: "T",
+      text: Scratch.translate("/t/ T as in talk"),
+    },
+    {
+      value: "K",
+      text: Scratch.translate("/k/ K as in cake"),
+    },
+    {
+      value: "CH",
+      text: Scratch.translate("/ʧ/ CH as in speech"),
+    },
+    {
+      value: "/H",
+      text: Scratch.translate("/h/ /H as in ahead"),
+    },
+    {
+      value: "UL",
+      text: Scratch.translate("/əl/ UL as in settle"),
+    },
+    {
+      value: "UM",
+      text: Scratch.translate("/əm/ UM as in astronomy"),
+    },
+    {
+      value: "UN",
+      text: Scratch.translate("/ʌŋ/ UN as in function"),
+    },
+    {
+      value: "Q",
+      text: Scratch.translate("/ʔ/ Q as in kitt**-**en (glottal stop)"),
+    },
+  ];
+
   initSamJs();
 
   class SAM {
@@ -166,6 +387,17 @@
               },
             },
           },
+          {
+            opcode: "getPhoneme",
+            blockType: Scratch.BlockType.REPORTER,
+            text: Scratch.translate("[PHONEME]"),
+            arguments: {
+              PHONEME: {
+                type: Scratch.ArgumentType.STRING,
+                menu: "PHONEMES",
+              },
+            },
+          },
         ],
         menus: {
           PROP_MENU: {
@@ -192,6 +424,10 @@
           PRESET_MENU: {
             acceptReporters: true,
             items: presetMenu,
+          },
+          PHONEMES: {
+            acceptReporters: true,
+            items: phonemeMenu,
           },
         },
       };
@@ -274,6 +510,10 @@
     getProp(args, util) {
       this.checkProps(util);
       return util.target.extensionStorage.samtts[args.PROP] / 2.55; // 0-255 -> 0-100
+    }
+    getPhoneme(args, util) {
+      // value is the correct string
+      return args.PHONEME;
     }
   }
   Scratch.extensions.register(new SAM());
