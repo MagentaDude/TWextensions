@@ -4,6 +4,8 @@
 // By: MagentaDude <https://scratch.mit.edu/users/MagentaDude1359/>
 // License: MIT
 
+/* global SamJs */
+
 (function (Scratch) {
   "use strict";
 
@@ -441,9 +443,7 @@
     }
     speak(args, util) {
       this.checkProps(util);
-      /* eslint-disable */
-      new SamJs(util.target.extensionStorage.samtts).speak(args.SPEECH); // Lint disabled because SamJs isn't recognized
-      /* eslint-enable */
+      new SamJs(util.target.extensionStorage.samtts).speak(args.SPEECH);
     }
     loadPreset(args, util) {
       util.target.extensionStorage.samtts = { ...PRESETS[args.PRESET] };
@@ -463,9 +463,7 @@
         }
       }
       this.checkProps(util);
-      /* eslint-disable */
       new SamJs(util.target.extensionStorage.samtts).download(args.SPEECH);
-      /* eslint-enable */
     }
     /**
      * Shamelessly copied from Lily/Assets.js addSound()
